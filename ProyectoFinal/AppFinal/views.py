@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest,HttpResponse
 from .models import *
-from .forms import FormPelicula
+from .forms import FormPelicula,FormSerie
 
 def inicio(req):
     return render(req, "inicio.html")
@@ -33,3 +33,20 @@ def formPelicula(req):
     else:
         miFormulario=FormPelicula()
         return render(req, "formPelicula.html",{"miFormulario":miFormulario})
+
+def formSerie(req):
+    print('method',req.method)
+    print('POST',req.POST)
+
+    if req.method == 'POST':
+        miFormulario=FormSerie(req.POST)
+        if miFormulario.is_valid():
+            data=miFormulario.cleaned_data
+            serie=Serie(nombre=data['nombre'],subtitulo=data['subtitulo'],imagen=data['imagen'],temporada=data['temporada'],descripcion=data['descripcion'],reseña=data['reseña'],youtube=data['youtube'])
+            serie.save()
+
+        return render(req,"formSerie.html")
+    
+    else:
+        miFormulario=FormSerie()
+        return render(req, "formSerie.html",{"miFormulario":miFormulario})
