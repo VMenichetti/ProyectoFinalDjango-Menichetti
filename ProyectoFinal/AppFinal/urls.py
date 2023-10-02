@@ -5,5 +5,6 @@ urlpatterns = [
     path('',inicio,name="inicio"),
     path('peliculas/',peliculas, name="peliculas"),
     path('series/',series, name="series"),
-    path('usuarios/',usuarios, name="usuarios") 
+    path('usuarios/',usuarios, name="usuarios"),
+    path('formulario-pelicula/',formPelicula,name="formularioPelicula"), 
 ]
