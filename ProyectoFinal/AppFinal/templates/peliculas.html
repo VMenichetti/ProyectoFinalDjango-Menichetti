@@ -2,6 +2,30 @@
 
 
 {% block contenidoQueCambia1 %}
-    <h1>dsadsadsadasdasdasdads</h1>
+<section class="container my-5">
+    <h1 class="display-1">Lista de Peliculas</h1>
+    <hr />
+    <article class="row">
+      <div class="col-12 col-md-4 col-lg-3 my-3">
+        <div class="card">
+          <img 
+            src="{{pelicula.imagen.url}}"             
+            class="card-img-top"
+            alt="{{ pelicula.nombre }}"
+          />
+          <div class="card-body">
+            <h5 class="card-title">
+                {{ pelicula.nombre }} <span class="badge bg-warning">NUEVO</span>
+            </h5>
+            <p class="card-text">
+                Descripción: {{ pelicula.descripcion }}
+            </p>
+            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          </div>
+        </div>
+      </div>
+      
+    </article>
+  </section>
 {% endblock contenidoQueCambia1 %}
     

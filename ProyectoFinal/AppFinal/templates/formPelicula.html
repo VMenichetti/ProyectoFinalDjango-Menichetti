@@ -4,7 +4,7 @@
 {% block contenidoQueCambia1 %}
 
 <h1 class="text-center my-2">Formulario de Registro de Peliculas</h1>
-<form class= "container my-3" action="{% url 'formularioPelicula' %}" method="post">{% csrf_token %}
+<form class= "container my-3" action="{% url 'formularioPelicula' %}" enctype="multipart/form-data" method="post">{% csrf_token %}
     <div class="form-group">
       <label>Nombre</label>
       <input type="text" class="form-control" name="nombre" placeholder="Ingrese el nombre de la Pelicula">
@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
     <label>Imagen</label>
-    <input type="image" class="form-control" name="imagen" placeholder="Agregue caratula de Pelicula">
+    <input type="file" class="form-control" name="imagen" accept="image/*" placeholder="Agregue caratula de Pelicula">
     </div>
     <div class="form-group">
       <label>Descripcion</label>

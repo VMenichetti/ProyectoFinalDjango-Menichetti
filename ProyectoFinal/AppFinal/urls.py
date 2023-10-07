@@ -1,5 +1,7 @@
 from django.urls import path
 from AppFinal.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',inicio,name="inicio"),
@@ -8,4 +10,11 @@ urlpatterns = [
     path('usuarios/',usuarios, name="usuarios"),
     path('formulario-pelicula/',formPelicula,name="formularioPelicula"), 
     path('formulario-serie/',formSerie,name="formularioSerie"), 
+    path('lista-peliculas/', lista_peliculas, name='ListaPeliculas'),
+    path('busqueda-pelicula/',busquedaPelicula,name="BusquedaPelicula"),
+    path('buscar/',buscar,name="Buscar"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

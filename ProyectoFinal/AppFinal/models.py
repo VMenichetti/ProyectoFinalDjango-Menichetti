@@ -4,13 +4,14 @@ class Pelicula(models.Model):
 
     nombre = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=40)
-    imagen = models.ImageField(blank=True , null=True)
-    descripcion = models.CharField(max_length=150)
-    reseña = models.CharField(max_length=150)
+    imagenpelicula = models.ImageField(upload_to='pelicula', null=True, blank=True)
+    descripcion = models.CharField(max_length=600)
+    reseña = models.CharField(max_length=600)
     youtube = models.URLField()
 
     def _str_(self):
-        return f'{self.nombre}'
+        return f'{self.nombre} - {self.subtitulo}'
+
     
 class Serie(models.Model):
 
@@ -23,7 +24,8 @@ class Serie(models.Model):
     youtube = models.URLField()
 
     def _str_(self):
-        return f'{self.nombre}'
+        return f'{self.nombre} - {self.temporada}'
+    
 
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)

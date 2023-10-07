@@ -251,3 +251,7 @@ nav{
   margin-left: auto ;
   width: 425px;
 }
+
+.equal-height-card {
+  height: 100%; /* Establece la altura deseada */
+}
