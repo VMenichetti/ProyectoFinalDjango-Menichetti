@@ -1,7 +1,8 @@
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img class="w-100" src="img/logoo.png" alt="Logo" height="100px">
+        <img class="w-100" src="{% static 'assets\img\logoo.png' %}" alt="Logo" height="100px">
       </a>
       <div class="ps-lg-5 ms-5 d-xl-flex d-none " id="#">
         <input class="nav-search ms-5" placeholder="Buscá tu serie o peli favorita" aria-label="Search" required minlength="2" maxlength="50" id="#"/>
