@@ -13,6 +13,7 @@ urlpatterns = [
     path('lista-peliculas/', lista_peliculas, name='ListaPeliculas'),
     path('busqueda-pelicula/',busquedaPelicula,name="BusquedaPelicula"),
     path('buscar/',buscar,name="Buscar"),
+    path('error/',error,name="error404"),
 ]
 
 if settings.DEBUG:

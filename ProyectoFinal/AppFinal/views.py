@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpRequest,HttpResponse
 from .models import *
 from .forms import FormPelicula,FormSerie
+from flask import Flask, request
+
 
 
 def lista_peliculas(req):
@@ -33,6 +35,9 @@ def series(req):
 
 def usuarios(req):
     return render(req, "inicio.html")
+
+def error(req):
+    return render(req, "error404.html")
 
 
 # FORMULARIOS
