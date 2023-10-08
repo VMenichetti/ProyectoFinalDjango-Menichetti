@@ -108,16 +108,16 @@ def editar_pelicula(req, id):
 
     if req.method == 'POST':
 
-        miFormulario = FormPelicula(req.POST)
+        miFormulario = FormPelicula(req.POST, req.FILES)
 
         if miFormulario.is_valid():
 
             data = miFormulario.cleaned_data
-            pelicula.nombre=data["nombre"],
-            pelicula.subtitulo=data["subtitulo"],
-            pelicula.imagenpelicula=data["imagen"],
-            pelicula.descripcion=data["descripcion"],
-            pelicula.reseña=data["reseña"],
+            pelicula.nombre=data["nombre"]
+            pelicula.subtitulo=data["subtitulo"]
+            pelicula.imagenpelicula=data["imagen"]
+            pelicula.descripcion=data["descripcion"]
+            pelicula.reseña=data["reseña"]
             pelicula.youtube=data["youtube"]
             pelicula.save()
 
