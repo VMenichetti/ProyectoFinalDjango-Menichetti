@@ -17,7 +17,7 @@ class Serie(models.Model):
 
     nombre = models.CharField(max_length=40)
     subtitulo = models.CharField(max_length=40)
-    imagen = models.ImageField(blank=True , null=True)
+    imagenserie = models.ImageField(upload_to='pelicula/', null=True, blank=True)
     temporada = models.IntegerField()
     descripcion = models.CharField(max_length=150)
     reseña = models.CharField(max_length=150)

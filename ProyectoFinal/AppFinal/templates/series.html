@@ -1,25 +1,25 @@
 {% extends 'padre.html' %}
 
 {% block contenidoQueCambia1 %}
-    <h1>Listado de Películas</h1>
+    <h1>Listado de Series</h1>
     <div class="card-container">
         <div class="row">
-            {% for pelicula in lista_peliculas %}
+            {% for serie in lista_series %}
                 <div class="col-12 col-md-4 col-lg-3 my-3">
                     <div class="card equal-height-card">
 
-                        {% if pelicula.imagenpelicula %}
-                            <img src="{{ pelicula.imagenpelicula.url }}"class="card-img-top" alt="{{ pelicula.nombre }}">
+                        {% if serie.imagenserie %}
+                            <img src="{{ serie.imagenserie.url }}"class="card-img-top" alt="{{ serie.nombre }}">
                         {% else %}
                             <img src="tu-imagen-predeterminada.jpg" class="card-img-top" alt="Imagen no disponible" />
                         {% endif %}
 
                         <div class="card-body">
                             <h5 class="card-title">
-                                {{ pelicula.nombre }} {% if pelicula.es_nuevo %}<span class="badge bg-warning">NUEVO</span>{% endif %}
+                                {{ serie.nombre }} {% if serie.es_nuevo %}<span class="badge bg-warning">NUEVO</span>{% endif %}
                             </h5>
                             <p class="card-text">
-                                Descripción: {{ pelicula.descripcion }}
+                                Descripción: {{ serie.descripcion }}
                             </p>
                         </div>
                     </div>
