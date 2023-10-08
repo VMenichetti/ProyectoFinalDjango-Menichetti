@@ -14,21 +14,20 @@ def lista_peliculas(req):
 def inicio(req):
     return render(req, "inicio.html")
 
-def peliculas(req):
-    # cant_por_pagina = 3
+def peliculas(req, start=0):
+    cant_por_pagina = 3
 
-    # if req.GET.get('direction') == 'next':
-    #     start += 1
-    # elif req.GET.get('direction') == 'previous':
-    #     start -= 1
+    if req.GET.get('direction') == 'next':
+        start += 1
+    elif req.GET.get('direction') == 'previous':
+        start -= 1
 
-    # inicio = int(start)*cant_por_pagina
-    # final = (int(start) + 1)*cant_por_pagina
-    # lista_peliculas = Pelicula.objects.all()[inicio:final]
+    inicio = int(start)*cant_por_pagina
+    final = (int(start) + 1)*cant_por_pagina
+    lista_peliculas = Pelicula.objects.all()[inicio:final]
 
-    # return render(req, "peliculas.html", {"lista_peliculas": lista_peliculas, "current_page": start})
-    peliculas = Pelicula.objects.all()
-    return render(req, "lista_peliculas.html", {"lista_peliculas": peliculas})
+    return render(req, "peliculas.html", {"lista_peliculas": lista_peliculas, "current_page": start})
+
 
 
 def series(req):
@@ -81,7 +80,7 @@ def crear_pelicula(request):
                 reseña=data['reseña'],
                 youtube=data['youtube'])
             pelicula.save()
-            return redirect('ListaPeliculas')  # Cambia 'lista_peliculas' por la URL de tu vista de lista de películas
+            return redirect('lista_peliculas') 
     else:
         form = PeliculaForm()
     return render(request, 'formPelicula.html', {'form': form})
@@ -97,7 +96,7 @@ def eliminar_pelicula(req, id):
 
         pelicula = Pelicula.objects.all()
 
-        return render(req, "lista_peliculas.html", {"peliculas": peliculas})
+        return redirect('lista_peliculas')
 
 # Funcion Editar Pelicula
     
@@ -114,12 +113,12 @@ def editar_pelicula(req, id):
         if miFormulario.is_valid():
 
             data = miFormulario.cleaned_data
-            pelicula.nombre=data['nombre'],
-            pelicula.subtitulo=data['subtitulo'],
-            pelicula.imagenpelicula=data['imagen'],
-            pelicula.descripcion=data['descripcion'],
-            pelicula.reseña=data['reseña'],
-            pelicula.youtube=data['youtube']
+            pelicula.nombre=data["nombre"],
+            pelicula.subtitulo=data["subtitulo"],
+            pelicula.imagenpelicula=data["imagen"],
+            pelicula.descripcion=data["descripcion"],
+            pelicula.reseña=data["reseña"],
+            pelicula.youtube=data["youtube"]
             pelicula.save()
 
             return render(req, "inicio.html")
