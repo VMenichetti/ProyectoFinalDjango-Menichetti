@@ -1,7 +1,7 @@
 {% extends 'padre.html' %}
 
 {% block contenidoQueCambia1 %}
-    <form action="{% url 'EditarPelicula' id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+    <form action="{% url 'EditarSerie' id %}" method="post" enctype="multipart/form-data">{% csrf_token %}
 
         {{miFormulario.as_div}}
 
