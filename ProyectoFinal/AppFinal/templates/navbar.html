@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img class="w-100" src="{% static 'assets\img\logoo.png' %}" alt="Logo" height="100px">
+      </a>
+      <div class="ps-lg-5 ms-5 d-xl-flex d-none " id="#">
+        <input class="nav-search ms-5" placeholder="Buscá tu serie o peli favorita" aria-label="Search" required minlength="2" maxlength="50" id="#"/>
+        <button class="nav-search-icon" disabled type="button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+        <ul class="ms-0 listaBusqueda bg-light rounded d-none" id="#">
+        </ul>
+    </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarMenu"
+        aria-controls="navbarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarMenu"
+      >
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active linkNav" aria-current="page" href="index.html"
+              >Inicio</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link linkNav" href="{% url 'peliculas' %}">Peliculas</a>            
+          </li>
+          <li class="nav-item">
+            <a class="nav-link linkNav" href="{% url 'series' %}">Series</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link linkNav" href="#">Nosotros</a>
+          </li>
+        </ul>
+        <div>
+            <a href="#" class="ghst-btn mx-2">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav> 
