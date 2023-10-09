@@ -31,16 +31,13 @@ class CustomRegistrationForm(UserCreationForm):
 
 class UserEditForm(UserChangeForm):
 
-    password = forms.CharField(
-        help_text="",
-        widget=forms.HiddenInput(), required=False
-    )
-
-    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Repetir contraseña", widget=forms.PasswordInput)
+    email = forms.EmailField(max_length=254)
+    username = forms.CharField(max_length=30)
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput())
+    password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput())
 
     class Meta:
         model=User
-        fields = ("email", "first_name", "last_name", "password1", "password2")
+        fields = ("email", "username", "password1", "password2")
 
 

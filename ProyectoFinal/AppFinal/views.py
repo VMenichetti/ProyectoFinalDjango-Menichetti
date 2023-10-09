@@ -272,15 +272,6 @@ def register(req):
         miFormulario = CustomRegistrationForm()
         return render(req, "registro.html", {"miFormulario": miFormulario})
 
-# LOGOUT
-
-# MODELOS BASADOS EN VISTAS
-
-class CursoList(LoginRequiredMixin, ListView):
-    model = Pelicula
-    template_name = "lista_peliculas.html"
-    context_object_name = "peliculas"
-
 # EDITAR PERFIL
 
 def editar_perfil(req):
@@ -293,9 +284,8 @@ def editar_perfil(req):
         if miFormulario.is_valid():
             
             data = miFormulario.cleaned_data
-            usuario.first_name = data["first_name"]
-            usuario.last_name = data["last_name"]
             usuario.email = data["email"]
+            usuario.username = data["username"]
             usuario.set_password(data["password1"])
             usuario.save()
 
@@ -306,6 +296,17 @@ def editar_perfil(req):
     else:
         miFormulario = UserEditForm(instance=usuario)
         return render(req, "editarPerfil.html", {"miFormulario": miFormulario})
+
+# LOGOUT
+
+# MODELOS BASADOS EN VISTAS
+
+class CursoList(LoginRequiredMixin, ListView):
+    model = Pelicula
+    template_name = "lista_peliculas.html"
+    context_object_name = "peliculas"
+
+
     
 
 
