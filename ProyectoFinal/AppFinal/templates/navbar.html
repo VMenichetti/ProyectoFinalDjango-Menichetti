@@ -44,8 +44,12 @@
           </li>
         </ul>
         <div>
-            <a href="{% url 'Login' %}" class="ghst-btn mx-2" data-target="#loginModal">Login</a>
-        </div>
+          {% if user.is_authenticated %}
+              <a href="{% url 'Logout' %}" class="ghst-btn mx-2">Logout</a>
+          {% else %}
+              <a href="{% url 'Login' %}" class="ghst-btn mx-2" data-target="#loginModal">Login</a>
+          {% endif %}
+      </div>
       </div>
     </div>
   </nav> 

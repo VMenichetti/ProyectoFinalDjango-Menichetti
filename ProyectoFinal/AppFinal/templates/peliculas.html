@@ -18,13 +18,13 @@
                             <h5 class="card-title">
                                 {{ pelicula.nombre }} {% if pelicula.es_nuevo %}<span class="badge bg-warning">NUEVO</span>{% endif %}
                             </h5>
-                            <p class="card-text">
-                                Descripción: {{ pelicula.descripcion }}
-                            </p>
+
                         </div>
+                        <button type="submit" class="btn btn-primary"><a href="{% url 'pelicula' pelicula.pk %}" style="text-decoration: none; color: white;" >Ver Mas</a></button>
                     </div>
                 </div>
             {% endfor %}
         </div>
     </div>
 {% endblock contenidoQueCambia1 %}
+

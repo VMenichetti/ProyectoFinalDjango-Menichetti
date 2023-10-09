@@ -1,0 +1,27 @@
+{% extends 'padre.html' %}
+
+{% block contenidoQueCambia1 %}
+    <h1 class="mb-5 text-center mt-4" style="color: yellow;">{{ pelicula.nombre }}</h1>
+    <div class="container text-light d-flex justify-content-center" >
+        <br>
+        <br>
+        <div class="row container">
+            <div class="col-lg-6">
+                {% if pelicula.imagenpelicula %}
+                    <img src="{{ pelicula.imagenpelicula.url }}" class="img-fluid" alt="{{ pelicula.nombre }}">
+                {% else %}
+                    <img src="tu-imagen-predeterminada.jpg" class="img-fluid" alt="Imagen no disponible">
+                {% endif %}
+            </div>
+            <div class="col-lg-6">
+                <h2>{{ pelicula.nombre }}</h2>
+                <p>Descripción: {{ pelicula.descripcion }}</p>
+                <h3>Reseña:</h3>
+                <p>{{ pelicula.reseña }}</p>
+            </div>
+        </div>
+    </div>
+
+    
+
+{% endblock contenidoQueCambia1 %}

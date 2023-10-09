@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.http import HttpRequest,HttpResponse
 from .models import *
 from .forms import FormPelicula,FormSerie, CustomRegistrationForm, UserEditForm
@@ -66,9 +66,12 @@ def error(req):
 def nosotros(req):
     return render(req, "nosotros.html")
 
+def detalle_pelicula(req):
+    return render(req, "detallePelicula.html")
+
 
 # CRUD PELICULAS
-@staff_member_required(login_url='/app-final/login')
+# @staff_member_required(login_url='/app-final/login')
 
 
 # Funcion Crear Pelicula
@@ -309,6 +312,11 @@ class CursoList(LoginRequiredMixin, ListView):
     model = Pelicula
     template_name = "lista_peliculas.html"
     context_object_name = "peliculas"
+
+class PeliculaDetalle(LoginRequiredMixin, DetailView):
+    model = Pelicula
+    context_object_name = 'pelicula'
+    template_name = 'detallePelicula.html'
 
 
     

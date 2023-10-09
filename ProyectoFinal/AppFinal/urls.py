@@ -24,6 +24,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name="logout.html"), name="Logout"),
     path('editar-pefil/', editar_perfil, name="EditarPefil"),
     path('nosotros/', nosotros, name="Nosotros"),
+    # path('detalle-pelicula/',detalle_pelicula, name="detallePelicula"),
+    path('detallePelicula/<int:pk>/', PeliculaDetalle.as_view(), name='pelicula'),
 ]
 
 
