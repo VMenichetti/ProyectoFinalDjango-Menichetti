@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from .models import *
 
 class FormPelicula(forms.Form):
     nombre = forms.CharField(max_length=40)
@@ -20,7 +21,7 @@ class FormSerie(forms.Form):
     youtube = forms.URLField()
 
 class CustomRegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254,help_text="Introduce tu dirección de correo electrónico.")
+    email = forms.EmailField(max_length=254)
     username = forms.CharField(max_length=30)
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput())
@@ -33,11 +34,26 @@ class UserEditForm(UserChangeForm):
 
     email = forms.EmailField(max_length=254)
     username = forms.CharField(max_length=30)
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput() )
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput())
 
     class Meta:
         model=User
         fields = ("email", "username", "password1", "password2")
+
+class AvatarFormulario(forms.ModelForm):
+
+    class Meta:
+        model = Avatar
+        fields = ("imagen",)
+
+class FormularioComentario(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('nombre', 'mensaje')
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'mensaje' : forms.Textarea(attrs={'class': 'form-control'}),
+             }
 
 
