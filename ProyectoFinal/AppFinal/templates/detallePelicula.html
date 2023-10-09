@@ -18,6 +18,11 @@
                 <p>Descripción: {{ pelicula.descripcion }}</p>
                 <h3>Reseña:</h3>
                 <p>{{ pelicula.reseña }}</p>
+                {% if pelicula.youtube %}
+                <iframe width="560" height="315" src="{{ pelicula.youtube }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            {% else %}
+                <p>Video de YouTube no disponible.</p>
+            {% endif %}
             </div>
         </div>
     </div>
