@@ -61,6 +61,9 @@
         </ul>
         <div>
           {% if user.is_authenticated %}
+            {% if url_avatar %}
+              <img src="{{url_avatar}}" height="30px" alt="avatar" class="rounded-circle">            
+            {% endif %}
               <a href="{% url 'Logout' %}" class="ghst-btn mx-2">Logout</a>
           {% else %}
               <a href="{% url 'Login' %}" class="ghst-btn mx-2" data-target="#loginModal">Login</a>

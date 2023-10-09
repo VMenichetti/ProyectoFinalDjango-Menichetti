@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from .models import *
 
 class FormPelicula(forms.Form):
     nombre = forms.CharField(max_length=40)
@@ -39,5 +40,20 @@ class UserEditForm(UserChangeForm):
     class Meta:
         model=User
         fields = ("email", "username", "password1", "password2")
+
+class AvatarFormulario(forms.ModelForm):
+
+    class Meta:
+        model = Avatar
+        fields = ("imagen",)
+
+class FormularioComentario(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ('nombre', 'mensaje')
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'mensaje' : forms.Textarea(attrs={'class': 'form-control'}),
+             }
 
 

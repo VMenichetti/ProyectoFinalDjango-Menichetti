@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView,CreateView
 from django.http import HttpRequest,HttpResponse
 from .models import *
-from .forms import FormPelicula,FormSerie, CustomRegistrationForm, UserEditForm
+from .forms import FormPelicula,FormSerie, CustomRegistrationForm, UserEditForm, AvatarFormulario,FormularioComentario
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -10,9 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
-
-
+from django.urls import reverse_lazy
 
 
 def lista_peliculas(req):
@@ -26,7 +24,11 @@ def lista_series(req):
 
 
 def inicio(req):
-    return render(req, "inicio.html")
+    try:
+        avatar = Avatar.objects.get(user=req.user.id)
+        return render(req, "inicio.html", {"url_avatar": avatar.imagen.url})
+    except:
+        return render(req, "inicio.html")
 
 def peliculas(req, start=0):
     cant_por_pagina = 8
@@ -317,8 +319,36 @@ class PeliculaDetalle(LoginRequiredMixin, DetailView):
     model = Pelicula
     context_object_name = 'pelicula'
     template_name = 'detallePelicula.html'
+    
+# avatar
+@login_required 
+def agregar_avatar(req):
 
+    if req.method == 'POST':
+
+        miFormulario = AvatarFormulario(req.POST, req.FILES)
+
+        if miFormulario.is_valid():            
+            data = miFormulario.cleaned_data
+            avatar = Avatar(user=req.user, imagen=data["imagen"])
+            avatar.save()
+
+            return render(req, "inicio.html", {"mensaje": "Avatar actualizados con éxito!"})
+
+    else:
+        miFormulario = AvatarFormulario()
+        return render(req, "avatar.html", {"miFormulario": miFormulario})
 
     
+# COMENTARIOS
 
+class ComentarioPagina(LoginRequiredMixin, CreateView):
+    model = Comentario
+    form_class = FormularioComentario
+    template_name = 'comentario.html'
+    success_url = reverse_lazy('inicio')
+
+    def form_valid(self, form):
+        form.instance.comentario_id = self.kwargs['pk']
+        return super(ComentarioPagina, self).form_valid(form)
 
