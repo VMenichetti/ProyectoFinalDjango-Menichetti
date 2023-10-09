@@ -2,6 +2,19 @@
 {% load static %}
 
 
+{% block contenidoQueCambia %}
+<style>
+    .mensaje-blanco {
+        color: white;
+    }
+</style>
+
+<div class="mensaje-blanco">
+    {{ mensaje }}
+</div>
+{% endblock contenidoQueCambia %}
+  
+
 {% block contenidoQueCambia1 %}
 <article class="container">
     <h2 class="text-center mt-3">Proximos estrenos de horror</h2>
