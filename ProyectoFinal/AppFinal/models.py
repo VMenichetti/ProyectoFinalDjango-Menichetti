@@ -19,8 +19,8 @@ class Serie(models.Model):
     subtitulo = models.CharField(max_length=40)
     imagenserie = models.ImageField(upload_to='pelicula/', null=True, blank=True)
     temporada = models.IntegerField()
-    descripcion = models.CharField(max_length=150)
-    reseña = models.CharField(max_length=150)
+    descripcion = models.CharField(max_length=600)
+    reseña = models.CharField(max_length=600)
     youtube = models.URLField()
 
     def _str_(self):
