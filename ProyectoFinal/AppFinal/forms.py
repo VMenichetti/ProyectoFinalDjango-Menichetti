@@ -20,7 +20,7 @@ class FormSerie(forms.Form):
     youtube = forms.URLField()
 
 class CustomRegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=254,help_text="Introduce tu dirección de correo electrónico.")
+    email = forms.EmailField(max_length=254)
     username = forms.CharField(max_length=30)
     password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput())
@@ -33,7 +33,7 @@ class UserEditForm(UserChangeForm):
 
     email = forms.EmailField(max_length=254)
     username = forms.CharField(max_length=30)
-    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput() )
+    password1 = forms.CharField(label='Contraseña', widget=forms.PasswordInput())
     password2 = forms.CharField(label='Repita Contraseña', widget=forms.PasswordInput())
 
     class Meta:

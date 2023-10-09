@@ -26,6 +26,7 @@ urlpatterns = [
     path('nosotros/', nosotros, name="Nosotros"),
     # path('detalle-pelicula/',detalle_pelicula, name="detallePelicula"),
     path('detallePelicula/<int:pk>/', PeliculaDetalle.as_view(), name='pelicula'),
+
 ]
 
 
