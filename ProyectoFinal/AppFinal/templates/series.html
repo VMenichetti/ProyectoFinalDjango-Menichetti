@@ -18,10 +18,9 @@
                             <h5 class="card-title">
                                 {{ serie.nombre }} {% if serie.es_nuevo %}<span class="badge bg-warning">NUEVO</span>{% endif %}
                             </h5>
-                            <p class="card-text">
-                                Descripción: {{ serie.descripcion }}
-                            </p>
+
                         </div>
+                        <button type="submit" class="btn btn-primary"><a href="#" style="text-decoration: none; color: white;" >Ver Mas</a></button>
                     </div>
                 </div>
             {% endfor %}

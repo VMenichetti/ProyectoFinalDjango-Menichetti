@@ -1,7 +1,10 @@
 {% extends 'padre.html' %}
 
 {% block contenidoQueCambia1 %}
-    <h1>Listado de Películas</h1>
+    <h1 class="text-center">Listado de Películas</h1>
+    <br>
+    <div class="container">
+          <button class="btn btn-primary"><a href="{% url 'formularioPelicula' %}" style="text-decoration: none; color: white;" >Agregar Peliculas</a></button>  
     <div class="card-container">
         <div class="row">
             {% for pelicula in lista_peliculas %}
@@ -36,4 +39,6 @@
             {% endfor %}
         </div>
     </div>
+    </div>
+
 {% endblock contenidoQueCambia1 %}

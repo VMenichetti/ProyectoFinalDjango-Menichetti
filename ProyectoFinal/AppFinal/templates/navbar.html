@@ -34,10 +34,22 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link linkNav" href="{% url 'peliculas' %}">Peliculas</a>            
-          </li>
-          <li class="nav-item">
-            <a class="nav-link linkNav" href="{% url 'series' %}">Series</a>
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <a class="nav-link linkNav" href="{% url 'ListaPeliculas' %}">Lista Peliculas</a>    
+                {% else %}
+                <a class="nav-link linkNav" href="{% url 'peliculas' %}">Peliculas</a> 
+                {% endif %}
+            {% endif %}
+           </li>
+           <li class="nav-item">
+            {% if user.is_authenticated %}
+                {% if user.is_superuser %}
+                  <a class="nav-link linkNav" href="{% url 'ListaSeries' %}">Lista Series</a>    
+                {% else %}
+                <a class="nav-link linkNav" href="{% url 'series' %}">Series</a> 
+                {% endif %}
+            {% endif %}
           </li>
           <li class="nav-item">
             <a class="nav-link linkNav" href="{% url 'Nosotros' %}">Nosotros</a>
