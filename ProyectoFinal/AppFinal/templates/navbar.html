@@ -29,7 +29,7 @@
       >
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active linkNav" aria-current="page" href="index.html"
+            <a class="nav-link active linkNav" aria-current="page" href="{% url 'inicio' %}"
               >Inicio</a
             >
           </li>
@@ -44,7 +44,7 @@
           </li>
         </ul>
         <div>
-            <a href="#" class="ghst-btn mx-2">Login</a>
+            <a href="{% url 'Login' %}" class="ghst-btn mx-2" data-target="#loginModal">Login</a>
         </div>
       </div>
     </div>

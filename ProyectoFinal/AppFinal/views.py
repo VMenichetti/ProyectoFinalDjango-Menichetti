@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
 from django.http import HttpRequest,HttpResponse
 from .models import *
-from .forms import FormPelicula,FormSerie
+from .forms import FormPelicula,FormSerie, CustomRegistrationForm, UserEditForm
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -199,7 +205,6 @@ def editar_serie(req, id):
         })
         return render(req, "editarSerie.html", {"miFormulario": miFormulario, "id": serie.id})
 
-    
 
 # BUSQUEDA
 
@@ -219,5 +224,85 @@ class PeliculaForm(forms.ModelForm):
     class Meta:
         model = Pelicula
         fields = ['nombre', 'subtitulo', 'imagenpelicula', 'descripcion', 'reseña', 'youtube']
+
+# LOGIN
+
+def loginView(req):
+
+    if req.method == 'POST':
+
+        miFormulario = AuthenticationForm(req, data=req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
+            psw = data["password"]
+
+            user = authenticate(username=usuario, password=psw)
+            if user:
+                login(req, user)
+                return render(req, "inicio.html", {"mensaje": f"Bienvenido usuario {usuario}!"})
+            
+        return render(req, "inicio.html", {"mensaje": f"Datos incorrectos"})
+    else:
+        miFormulario = AuthenticationForm()
+        return render(req, "login.html", {"miFormulario": miFormulario})
+
+# REGISTRO
+
+def register(req):
+    if req.method == 'POST':
+        miFormulario = CustomRegistrationForm(req.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+            usuario = data["username"]
+
+            miFormulario.save()
+            return render(req, "inicio.html", {"mensaje": f"Usuario {usuario} creado con éxito!"})
+        
+        return render(req, "inicio.html", {"mensaje": f"Formulario invalido"})
+
+    else:
+        miFormulario = CustomRegistrationForm()
+        return render(req, "registro.html", {"miFormulario": miFormulario})
+
+# LOGOUT
+
+# MODELOS BASADOS EN VISTAS
+
+class CursoList(LoginRequiredMixin, ListView):
+    model = Pelicula
+    template_name = "lista_peliculas.html"
+    context_object_name = "peliculas"
+
+# EDITAR PERFIL
+
+def editar_perfil(req):
+
+    usuario = req.user
+    if req.method == 'POST':
+
+        miFormulario = UserEditForm(req.POST, instance=req.user)
+
+        if miFormulario.is_valid():
+            
+            data = miFormulario.cleaned_data
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.set_password(data["password1"])
+            usuario.save()
+
+            return render(req, "inicio.html", {"mensaje": "Datos actualizados con éxito!"})
+        else:
+            return render(req, "editarPerfil.html", {"miFormulario": miFormulario})
+
+    else:
+        miFormulario = UserEditForm(instance=usuario)
+        return render(req, "editarPerfil.html", {"miFormulario": miFormulario})
+    
 
 
