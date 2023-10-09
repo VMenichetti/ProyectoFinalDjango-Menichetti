@@ -1,7 +1,10 @@
 {% extends 'padre.html' %}
 
 {% block contenidoQueCambia1 %}
-    <h1>Listado de Series</h1>
+    <h1 class="text-center">Listado de Series</h1>
+    <br>
+    <div class="container">
+        <button class="btn btn-primary"><a href="{% url 'formularioSerie' %}" style="text-decoration: none; color: white;" >Agregar Series</a></button>  
     <div class="card-container">
         <div class="row">
             {% for serie in lista_series %}
@@ -36,4 +39,5 @@
             {% endfor %}
         </div>
     </div>
+</div>
 {% endblock contenidoQueCambia1 %}
